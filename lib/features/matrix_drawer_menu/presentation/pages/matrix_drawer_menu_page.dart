@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_examples/features/matrix_drawer_menu/presentation/widgets/menu_tile.dart';
 
 class MatrixDrawerMenuPage extends StatefulWidget {
@@ -15,6 +16,11 @@ class _MatrixDrawerMenuPageState extends State<MatrixDrawerMenuPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light),
+    );
     return Scaffold(
       body: Stack(
         children: [
@@ -93,12 +99,21 @@ class _MatrixDrawerMenuPageState extends State<MatrixDrawerMenuPage> {
                   ..setEntry(3, 2, 0.001)
                   ..setEntry(0, 3, 200 * val)
                   ..rotateY((pi / 6) * val),
-                child: Scaffold(
-                  appBar: AppBar(
-                    title: const Text('Matrix Menu'),
-                  ),
-                  body: const Center(
-                    child: Text(' Swipe right to open the menu '),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: val * 24),
+                  child: ClipRRect(
+                    borderRadius: val > 0
+                        ? const BorderRadius.horizontal(
+                            left: Radius.circular(24))
+                        : BorderRadius.zero,
+                    child: Scaffold(
+                      appBar: AppBar(
+                        title: const Text('Matrix Menu'),
+                      ),
+                      body: const Center(
+                        child: Text(' Swipe right to open the menu '),
+                      ),
+                    ),
                   ),
                 ),
               );

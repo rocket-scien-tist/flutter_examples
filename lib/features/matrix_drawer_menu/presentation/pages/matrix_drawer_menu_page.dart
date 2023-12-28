@@ -44,6 +44,7 @@ class _MatrixDrawerMenuPageState extends State<MatrixDrawerMenuPage> {
               child: Column(
                 children: [
                   const DrawerHeader(
+                    padding: EdgeInsets.zero,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

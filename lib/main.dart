@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_examples/features/matrix_drawer_menu/presentation/pages/matrix_drawer_menu_page.dart';
+import 'package:flutter_examples/app/presentation/app_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,8 +11,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MatrixDrawerMenuPage(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AppWidget(),
     );
   }
 }

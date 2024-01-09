@@ -20,7 +20,7 @@ class MyHeaderTitle extends SliverPersistentHeaderDelegate {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
-          title,
+          title + ' title ',
           style: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,

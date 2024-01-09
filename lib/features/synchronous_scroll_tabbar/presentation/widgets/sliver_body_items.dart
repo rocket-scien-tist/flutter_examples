@@ -61,7 +61,7 @@ class SliverBodyItems extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: NetworkImage(
-                              'https://source.unsplash.com/random/',
+                              listItems[index].image,
                             ),
                           ),
                         ),

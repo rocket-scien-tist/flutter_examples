@@ -40,21 +40,25 @@ class SliverScrollController {
 
     listCategory = [
       CategoryModel(
+        globalKey: GlobalKey(debugLabel: 'Order again'),
         name: 'Order again',
         products: products,
         id: 0,
       ),
       CategoryModel(
+        globalKey: GlobalKey(debugLabel: 'Picked For You'),
         name: 'Picked For You',
         products: productsTwo,
         id: 1,
       ),
       CategoryModel(
+        globalKey: GlobalKey(debugLabel: 'Startes'),
         name: 'Startes',
         products: productsThree,
         id: 2,
       ),
       CategoryModel(
+        globalKey: GlobalKey(debugLabel: "Gimpub Sush"),
         name: 'Gimpub Sushi',
         products: productsFour,
         id: 3,
@@ -96,8 +100,9 @@ class SliverScrollController {
     if (headerNotifier.value?.index == index && headerNotifier.value!.visible) {
       scrollControllerItemHeader.animateTo(
         listOffSetItemHeader[headerNotifier.value!.index] - 16,
-        duration: const Duration(milliseconds: 500),
-        curve: goingDown.value ? Curves.bounceOut : Curves.fastOutSlowIn,
+        duration: const Duration(milliseconds: 1500),
+        // curve: goingDown.value ? Curves.bounceOut : Curves.fastOutSlowIn,
+        curve: Curves.linearToEaseOut,
       );
     }
   }
@@ -108,20 +113,28 @@ class SliverScrollController {
         ScrollDirection.reverse;
   }
 
-  void refreshHeader(
-    int index,
-    bool visible, {
+  void refreshHeader({
+    required int index,
+    required bool visible,
     int? lastIndex,
   }) {
     final headerValue = headerNotifier.value;
     final headerTitle = headerValue?.index ?? index;
     final headerVisible = headerValue?.visible ?? false;
-    if (headerTitle != index || lastIndex != null || headerVisible != visible) {
-      Future.microtask(() {
-        if (!visible && lastIndex != null) {
-          headerNotifier.value = MyHeaderModel(index: lastIndex, visible: true);
-        }
-      });
+    final condition =
+        headerTitle != index || lastIndex != null || headerVisible != visible;
+    if (condition) {
+      Future.microtask(
+        () {
+          final condition2 = (!visible && lastIndex != null);
+          if (condition2) {
+            headerNotifier.value =
+                MyHeaderModel(index: lastIndex!, visible: true);
+          } else {
+            headerNotifier.value = MyHeaderModel(index: index, visible: true);
+          }
+        },
+      );
     }
   }
 }

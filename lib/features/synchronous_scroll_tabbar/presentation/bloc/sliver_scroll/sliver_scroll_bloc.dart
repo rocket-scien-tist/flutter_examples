@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_examples/features/synchronous_scroll_tabbar/data/models/category/category_model.dart';
 import 'package:flutter_examples/features/synchronous_scroll_tabbar/data/models/product/product_model.dart';
@@ -10,6 +11,7 @@ class SliverScrollBloc extends Bloc<SliverScrollEvent, SliverScrollState> {
   final List<CategoryModel> listCategory = List.generate(
     4,
     (cI) => CategoryModel(
+      globalKey: GlobalKey(debugLabel: 'debug label $cI'),
       id: cI,
       name: 'Category $cI',
       products: List.generate(

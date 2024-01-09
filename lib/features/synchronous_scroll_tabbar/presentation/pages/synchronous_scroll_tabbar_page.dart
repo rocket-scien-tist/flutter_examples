@@ -5,6 +5,7 @@ import 'package:flutter_examples/features/synchronous_scroll_tabbar/presentation
 import 'package:flutter_examples/features/synchronous_scroll_tabbar/presentation/widgets/my_header_title.dart';
 import 'package:flutter_examples/features/synchronous_scroll_tabbar/presentation/widgets/sliver_body_items.dart';
 import 'package:flutter_examples/features/synchronous_scroll_tabbar/presentation/widgets/sliver_header_data.dart';
+import 'package:flutter_examples/utils/delete_it/colored_print.dart';
 
 class SynchronousScrollTabBarPage extends StatefulWidget {
   const SynchronousScrollTabBarPage({super.key});
@@ -57,9 +58,16 @@ class _SynchronousScrollTabBarPageState
                   for (int i = 0; i < bloc.listCategory.length; i++) ...[
                     SliverPersistentHeader(
                       delegate: MyHeaderTitle(
-                        onHeaderChanged: (visible) => bloc.refreshHeader(
-                            i, visible,
-                            lastIndex: i > 0 ? i - 1 : null),
+                        onHeaderChanged: (visible) {
+                          final lastIndex = i > 0 ? i - 1 : null;
+                          coloredPrint('refresh header by condition that:',
+                              'index: $i, visible: $visible, lastIndex: $lastIndex');
+                          bloc.refreshHeader(
+                            index: i,
+                            visible: visible,
+                            lastIndex: lastIndex,
+                          );
+                        },
                         title: bloc.listCategory[i].name,
                       ),
                     ),

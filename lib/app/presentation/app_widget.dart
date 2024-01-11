@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_examples/features/custom_expansion_tile/presentation/pages/custom_expansion_tile_page.dart';
+import 'package:flutter_examples/features/custom_tabbar/presentation/pages/custom_tab_bar_page.dart';
 import 'package:flutter_examples/features/double_value_input_field/presentation/pages/double_value_input_field_page.dart';
 import 'package:flutter_examples/features/matrix_drawer_menu/presentation/pages/matrix_drawer_menu_page.dart';
 import 'package:flutter_examples/features/synchronous_scroll_tabbar/presentation/pages/synchronous_scroll_tabbar_page.dart';
@@ -11,7 +12,8 @@ class AppWidget extends StatelessWidget {
     MatrixDrawerMenuPage(),
     DoubleValueInputFieldPage(),
     CustomExpansionTilePage(),
-    SynchronousScrollTabBarPage()
+    SynchronousScrollTabBarPage(),
+    CustomTabBarPage(),
   ];
 
   @override
